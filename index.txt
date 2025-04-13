@@ -1,0 +1,125 @@
+<!-- forced update -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WORLD'S MOST USELESS TIMER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            text-align: center;
+            padding: 20px;
+        }
+        #timer {
+            font-size: 100px;
+            color: #065f46;
+            margin: 20px;
+            text-shadow: 2px 2px 0px #dbeafe;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+        #donate-section {
+            background: white;
+            border: 2px dashed #f472b6;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .progress-bar {
+            height: 30px;
+            background: #dbeafe;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #10b981;
+            width: 8%;
+        }
+        ol {
+            text-align: left;
+            margin: 15px auto;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>⏳ WORLD'S MOST USELESS TIMER ⏳</h1>
+    <p><i>"Like my gym membership, this does absolutely nothing."</i></p>
+    
+    <div id="timer">00:00</div>
+    <button onclick="startTimer()">START WASTING TIME</button>
+    
+    <div id="donate-section">
+        <h2>⚠️ TIME PARADOX DETECTED!</h2>
+        <p>This timer reversed my collagen production. Help me turn back the clock!</p>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <p><b>$<span id="raised">115</span> raised</b> (Goal: $10,000 for Botox)</p>
+        
+        <a href="https://ko-fi.com/YOUR_USERNAME" target="_blank">
+            <img src="https://cdn.ko-fi.com/cdn/kofi2.png" alt="Buy Me a Coffee" style="height: 50px;">
+        </a>
+        
+        <p><small>Donations are tax-deductible (for my ego).</small></p>
+        
+        <h3>🥇 TOP SYMPATHY DONORS:</h3>
+        <ol>
+            <li>Aron ($50) – "Pls stop this"</li>
+            <li>Sarah ($20) – "This timer is as useless as a wet paper bag"</li>
+            <li>Dave ($5) – "This is worse than my divorce"</li>
+        </ol>
+    </div>
+
+    <script>
+        // Timer with custom duration + sound
+        function startTimer() {
+            let minutes = prompt("How many minutes do you want to waste? (Max 60)", "1");
+            if (!minutes || isNaN(minutes)) return;
+            
+            let seconds = parseInt(minutes) * 60;
+            let timerDisplay = document.getElementById("timer");
+            let timerInterval = setInterval(() => {
+                let mins = Math.floor(seconds / 60);
+                let secs = seconds % 60;
+                timerDisplay.innerHTML = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                seconds--;
+                
+                if (seconds < 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.innerHTML = "00:00";
+                    new Audio("https://www.soundjay.com/misc/sounds/magic-chime-01.mp3").play();
+                    alert(`Did you *actually* accomplish anything in ${minutes} minute(s)?`);
+                }
+            }, 1000);
+        }
+        
+        // Fake progress bar
+        let progress = 8;
+        setInterval(() => {
+            progress += 0.01;
+            document.getElementById("progress").style.width = progress + "%";
+            document.getElementById("raised").innerHTML = Math.floor(115 + progress);
+        }, 5000);
+    </script>
+</body>
+</html>
